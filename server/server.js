@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express();
 const mongoose = require('mongoose');
+const Users = require('./routes/Users');
 const port = process.env.PORT || 5000;
 
 // body-parser extract the entire body portion of an incoming request stream and exposes it on req.body.
@@ -23,6 +24,8 @@ mongoose.connect(
 )
 .then(() => console.log("MongoDB connected..."))
 .catch(err => console.log("error: " + err))
+
+app.use('/users', Users);
 
 app.listen(port, function() {
   console.log("Server is running on " + port)
